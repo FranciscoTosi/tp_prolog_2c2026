@@ -5,9 +5,10 @@
 % ----------------
 
 % esMatriz(+ListaDeListas)
-esMatriz([_]):- !.
-esMatriz([]).
-esMatriz([L0|[L1|LS]]) :- length(L0,N), length(L1,N), esMatriz(LS).
+esMatriz(M):- nth0(0,M,M0), length(M0,L), todasMiden(M,L).
+
+todasMiden([],_).
+todasMiden([M|MS],L):- length(M,L), todasMiden(MS,L).
 
 % ----------------
 % Ejercicio 2
