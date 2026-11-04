@@ -65,7 +65,9 @@ color(T, Color, Coordenada) :-
 
 % tableroConPosiciónLiberada(+Tablero, +Coordenada, -TableroLiberado)
 % Precondición: esMatriz(Tablero), coordenadaEnRango(Tablero, Coordenada), not(libre(Tablero, Coordenada)).
-tableroConPosiciónLiberada(_, _, _) :- completar("Ejercicio 4.a").
+tableroConPosiciónLiberada(T, (I,J), L):- append(M1,[M2|MS],T),
+length(M1,I), append(L1, [LJ|LS],M2), length(L1,J),
+append(L1,[libre|LS],LLibre), append(M1,[LLibre|MS],L), !.
 
 % ----------------
 % Ejercicio 4.b)
