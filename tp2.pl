@@ -219,7 +219,9 @@ jugadaPosible(T, (I, J)) :-
 
 % jugarPosicion(+TableroInicial, +Coordenada, -TableroResultante)
 % Precondicion: esMatriz(TableroInicial), coordenadaEnRango(TableroInicial, Coordenada), libre(TableroInicial, Coordenada).
-jugarPosicion(_, _, _) :- completar("Ejercicio 5.a").
+jugarPosicion(TI, Pos, TRes) :- 
+  coloresPredominantes(TI,Pos,_,Coordenadas), 
+  tableroConPosicionesLiberadas(TI,Coordenadas,TRes).
 
 % ----------------
 % Ejercicio 5.b)
@@ -228,7 +230,11 @@ jugarPosicion(_, _, _) :- completar("Ejercicio 5.a").
 % jugarPosiciones(+TableroInicial, +Jugadas, -TableroResultante)
 % Precondicion: esMatriz(TableroInicial).
 % Precondicion: para cada Coordenada en Jugadas: coordenadaEnRango(TableroInicial, Coordenada).
-jugarPosiciones(_, _, _) :- completar("Ejercicio 5.b").
+jugarPosiciones(TI, [], TI).
+
+jugarPosiciones(TI, [P|PS], TRes) :-
+  jugarPosicion(TI,P,TSiguiente),
+  jugarPosiciones(TSiguiente,PS,TRes).
 
 % jugarNaive(+TableroInicial, -TableroFinal)
 % Precondicion: esMatriz(TableroInicial).
@@ -307,7 +313,7 @@ guiParesJugadasTableros(T, [J | Js]) :-
 
 % tablero(+N, -T)
 tablero(1, [
-  [rojo,  libre, azul,  rojo],
+  [rojo,  rojo, azul,  rojo],
   [azul,  libre, azul,  rojo],
   [verde, rojo,  azul,  verde],
   [libre, libre, libre, rojo]
