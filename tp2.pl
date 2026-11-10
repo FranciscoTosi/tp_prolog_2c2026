@@ -276,7 +276,7 @@ victoriaConJugadas(T, JS) :- jugarPosiciones(T, JS, TRes), not(color(TRes, rojo,
 
 % juegoNaiveVictorioso(+Tablero, -Jugadas)
 % Precondicion: esMatriz(Tablero).
-juegoNaiveVictorioso(_, _) :- completar("Ejercicio 7.b").
+juegoNaiveVictorioso(T, JS) :- jugadasNaive(T,JS), victoriaConJugadas(T,JS).
 
 % ----------------
 % Ejercicio 7.c)
@@ -284,7 +284,7 @@ juegoNaiveVictorioso(_, _) :- completar("Ejercicio 7.b").
 
 % mejorJuegoNaive(+Tablero, -Jugadas)
 % Precondicion: esMatriz(Tablero).
-mejorJuegoNaive(_, _) :- completar("Ejercicio 7.c").
+mejorJuegoNaive(T, JS) :- juegoNaiveVictorioso(T, JS), length(JS,L), not((juegoNaiveVictorioso(T, JSo), length(JSo, Lo), L > Lo)).
 
 % ----------------
 % Ejercicio 8 - OPCIONAL
