@@ -268,7 +268,7 @@ jugadasNaive(T, [J|JS]):-
 % victoriaConJugadas(+Tablero, +Jugadas).
 % Precondicion: esMatriz(Tablero).
 % Precondicion: para cada Coordenada en Jugadas: coordenadaEnRango(Tablero, Coordenada).
-victoriaConJugadas(_, _) :- completar("Ejercicio 7.a").
+victoriaConJugadas(T, JS) :- jugarPosiciones(T, JS, TRes), not(color(TRes, rojo, C)), not(color(TRes, azul, C)), not(color(TRes, verde, C)). 
 
 % ----------------
 % Ejercicio 7.b)
