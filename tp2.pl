@@ -26,7 +26,7 @@ tamaño(M,F,C):- length(M,F), nth0(0,M,L), length(L,C).
 
 % coordenadaEnRango(+Matriz, +Coordenada)
 % Precondicion: esMatriz(Matriz)
-coordenadaEnRango(M, (I,J)) :- tamaño(M,F,C), 0 < I, I =< F, 0 < J, J =< C.
+coordenadaEnRango(M, (I,J)) :- 0 < I, 0 < J, tamaño(M,F,C), I =< F, J =< C.
 
 % ----------------
 % Observadores de tablero.
@@ -268,7 +268,7 @@ jugadasNaive(T, [J|JS]):-
 % victoriaConJugadas(+Tablero, +Jugadas).
 % Precondicion: esMatriz(Tablero).
 % Precondicion: para cada Coordenada en Jugadas: coordenadaEnRango(Tablero, Coordenada).
-victoriaConJugadas(T, JS) :- jugarPosiciones(T, JS, TRes), not(color(TRes, rojo, C)), not(color(TRes, azul, C)), not(color(TRes, verde, C)). 
+victoriaConJugadas(T, JS) :- jugarPosiciones(T, JS, TRes), not(color(TRes, _, _)). 
 
 % ----------------
 % Ejercicio 7.b)
